@@ -3,11 +3,8 @@
 LOG_FILE="/home/ec2-user/learning/phase4/sysht.log"
 source /home/ec2-user/learning/phase4/.env
 
-
 DATE=$(date)
 HOSTNAME=$(hostname)
-TOKEN=$TOKEN
-CHAT_ID=$CHAT_ID
 
 
 echo "--------------------------" >> $LOG_FILE
