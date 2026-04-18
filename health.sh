@@ -4,6 +4,9 @@ LOG_FILE="/home/ec2-user/learning/phase4/sysht.log"
 
 DATE=$(date)
 HOSTNAME=$(hostname)
+TOKEN="8696906102:AAEO-qihs7tBuwWPft07AvQWYOUlJ7RifHw"
+CHAT_ID="7675100712"
+
 
 echo "--------------------------" >> $LOG_FILE
 echo "Health check at [ $DATE ] on [ $HOSTNAME ]" >> $LOG_FILE
@@ -27,9 +30,15 @@ fi
 if (( $(echo "$MEMORY > 80" | bc -l) )); then
 	echo "Memory Usage High: $MEMORY%" >> $LOG_FILE
 fi
+
 if (( $(echo "$CPU > 80" | bc -l) )); then
 	echo "CPU Usage High: $CPU%" >> $LOG_FILE
 fi
+
+echo "----Alert Sent to Telegram----" >> $LOG_FILE
+curl -s -X POST "https://api.telegram.org/bot$TOKEN/sendMessage" \
+-d chat_id=$CHAT_ID \
+-d text="Test for linux" 
 
 
 
