@@ -23,6 +23,21 @@ It logs system data and sends real time-time alerts using the Telegram API when 
 - Cron
 - Telegram Bot API
 
+------------
+
 ## How it works
-1. Script collects system matrics using Linux Commands ('df','free',`top`)
+1. Script collects system matrics using Linux Commands (`df`,`free`,`top`)
+2. Processed data using `awk`,`sed`, and `bc`
+3. Compares values with defined thersholds
+4. Logs output into file
+5. Sends alert via Telegram if thersholds exceeds
+
+---- 
+
+## Setup Instructions
+
+### 1. Clone Repository
+```bash
+git clone https://github.com/Jaybhuke/linux-bp1.git
+cd linux-bp1
 
