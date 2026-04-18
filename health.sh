@@ -1,11 +1,13 @@
 #!/bin/bash
 
 LOG_FILE="/home/ec2-user/learning/phase4/sysht.log"
+source /home/ec2-user/learning/phase4/.env
+
 
 DATE=$(date)
 HOSTNAME=$(hostname)
-TOKEN="8696906102:AAEO-qihs7tBuwWPft07AvQWYOUlJ7RifHw"
-CHAT_ID="7675100712"
+TOKEN=$TOKEN
+CHAT_ID=$CHAT_ID
 
 
 echo "--------------------------" >> $LOG_FILE
@@ -35,10 +37,13 @@ if (( $(echo "$CPU > 80" | bc -l) )); then
 	echo "CPU Usage High: $CPU%" >> $LOG_FILE
 fi
 
+MESSAGE1="Alert: DISK:$USAGE% MEMORY:$MEMORY% CPU:$CPU% on $HOSTNAME"
+
 echo "----Sending Alert to Telegram----" >> $LOG_FILE
-#curl -s -X POST "https://api.telegram.org/bot$TOKEN/sendMessage" \
-#-d chat_id=$CHAT_ID \
-#-d text="Test for linux" 
+curl -s -X POST "https://api.telegram.org/bot$TOKEN/sendMessage" \
+-d chat_id=$CHAT_ID --data-urlencode "text=$MESSAGE1"
+
+echo "$MESSAGE1" >> $LOG_FILE
 
 if [ $USAGE -gt 80 ] || \
 	(( $(echo "$MEMORY > 80" | bc -l) )) || \
