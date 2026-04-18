@@ -20,4 +20,17 @@ echo "Memory Usage: $MEMORY%" >> $LOG_FILE
 CPU=$(top -b -n 1 | grep "Cpu(s)" | awk '{print $2 + $4}')
 echo "CPU Usage: $CPU%" >> $LOG_FILE
 
+if [ $USAGE -gt 80 ]; then
+	echo "Disk Usage High: $USAGE%" >> $LOG_FILE
+fi
+
+if (( $(echo "$MEMORY > 80" | bc -l) )); then
+	echo "Memory Usage High: $MEMORY%" >> $LOG_FILE
+fi
+if (( $(echo "$CPU > 80" | bc -l) )); then
+	echo "CPU Usage High: $CPU%" >> $LOG_FILE
+fi
+
+
+
 echo "--------------------------" >> $LOG_FILE
