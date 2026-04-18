@@ -35,10 +35,23 @@ if (( $(echo "$CPU > 80" | bc -l) )); then
 	echo "CPU Usage High: $CPU%" >> $LOG_FILE
 fi
 
-echo "----Alert Sent to Telegram----" >> $LOG_FILE
-curl -s -X POST "https://api.telegram.org/bot$TOKEN/sendMessage" \
--d chat_id=$CHAT_ID \
--d text="Test for linux" 
+echo "----Sending Alert to Telegram----" >> $LOG_FILE
+#curl -s -X POST "https://api.telegram.org/bot$TOKEN/sendMessage" \
+#-d chat_id=$CHAT_ID \
+#-d text="Test for linux" 
+
+if [ $USAGE -gt 80 ] || \
+	(( $(echo "$MEMORY > 80" | bc -l) )) || \
+	(( $(echo "$CPU > 80" | bc -l) )); then
+	
+	MESSAGE="Alert: DISK:$USAGE% MEMORY:$MEMORY% CPU:$CPU% on $HOSTNAME"
+
+	echo "$MESSAGE" >> $LOG_FILE
+
+	curl -s -X POST "https://api.telegram.org/bot$TOKEN/sendMessage" --data-urlencode "chat_id=$CHAT_ID" --data-urlencode "text=$MESSAGE"
+
+fi
+	
 
 
 

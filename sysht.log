@@ -1,7 +1,15 @@
 --------------------------
-Health check at [ Sat Apr 18 09:53:52 UTC 2026 ] on [ ip-172-31-18-211.eu-north-1.compute.internal ]
+Health check at [ Sat Apr 18 10:20:04 UTC 2026 ] on [ ip-172-31-18-211.eu-north-1.compute.internal ]
 Disk Usage: 22%
-Memory Usage: 16.59%
-CPU Usage: 0%
-----Alert Sent to Telegram----
+Memory Usage: 15.94%
+CPU Usage: 3.2%
+----Sending Alert to Telegram----
+Alert: DISK:22% MEMORY:15.94% CPU:3.2% on ip-172-31-18-211.eu-north-1.compute.internal
+--------------------------
+--------------------------
+Health check at [ Sat Apr 18 10:20:54 UTC 2026 ] on [ ip-172-31-18-211.eu-north-1.compute.internal ]
+Disk Usage: 22%
+Memory Usage: 15.94%
+CPU Usage: 3.1%
+----Sending Alert to Telegram----
 --------------------------
